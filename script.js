@@ -1,10 +1,10 @@
-let matches = []; // JSON မှ data များ ဝင်လာမည့် နေရာ
+let matches = []; 
 let currentIndex = 0;
-const changeInterval = 5000; 
+const changeInterval = 5000; // ၅ စက္ကန့်တစ်ခါပြောင်းမည်
 let isPlaying = true; 
 let intervalId; 
 
-// ကွင်းထဲတွင် Formation အစက်များ ထုတ်ပေးသည့် လုပ်ဆောင်ချက်
+// ဘောလုံးကွင်းထဲတွင် Formation အစက်များ ထုတ်ပေးသည့် လုပ်ဆောင်ချက်
 function generatePitchFormation(containerId, formationArray) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -107,13 +107,12 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// --- အဓိကအပိုင်း: data.json ဖိုင်ကို လှမ်းဖတ်ပြီး စတင်လည်ပတ်ခြင်း ---
+// data.json ဖိုင်ကို လှမ်းဖတ်ပြီး စတင်လည်ပတ်ခြင်း
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
         matches = data;
         
-        // ပထမဆုံးပွဲအတွက် မျက်နှာပြင်ပေါ်တွင် ချက်ချင်းသက်ရောက်စေရန်
         if (matches.length > 0) {
             const firstMatch = matches[0];
             document.getElementById('teamA-name').innerText = firstMatch.teamAName;
@@ -130,8 +129,7 @@ fetch('data.json')
             generatePitchFormation('teamA-players', firstMatch.teamAPitchArr);
             generatePitchFormation('teamB-players', firstMatch.teamBPitchArr);
             
-            // Auto Play စတင်မည်
             startAutoPlay();
         }
     })
-    .catch(error => console.error("JSON data ဖတ်ရာတွင် Error တက်နေပါသည် - ", error));
+    .catch(error => console.error("JSON data Error: ", error));
