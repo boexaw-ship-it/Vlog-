@@ -14,32 +14,66 @@
             <div class="event-name">World Cup '26 | Round of 16</div>
         </div>
 
-        <div class="lower-third-box">
+        <div class="side-panel">
+            <div class="panel-header">Match Info</div>
             
+            <div class="panel-section">
+                <div class="section-title">Team Formations</div>
+                <div class="formation-header-row">
+                    <span id="teamA-formation-text">Loading...</span>
+                    <span class="vs-text">VS</span>
+                    <span id="teamB-formation-text">Loading...</span>
+                </div>
+                
+                <div class="pitch">
+                    <div class="half-line"></div>
+                    <div class="center-circle"></div>
+                    <div id="teamA-players" class="team-players-grid team-a-layout"></div>
+                    <div id="teamB-players" class="team-players-grid team-b-layout"></div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title">Recent Form (Last 5 Matches)</div>
+                <div class="result-row">
+                    <img src="" class="small-flag" id="teamA-small-flag">
+                    <div class="form-badges" id="teamA-form"></div>
+                </div>
+                <div class="result-row">
+                    <img src="" class="small-flag" id="teamB-small-flag">
+                    <div class="form-badges" id="teamB-form"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lower-third-box">
             <div class="matchup-container">
                 <div class="team team-a">
-                    <img src="assets/flags/argentina.png" alt="Team A" class="flag" id="teamA-flag">
-                    <span class="team-name" id="teamA-name">Argentina</span>
+                    <img src="" alt="Team A" class="flag" id="teamA-flag">
+                    <span class="team-name" id="teamA-name">Loading...</span>
                 </div>
                 
                 <div class="vs-badge">VS</div>
                 
                 <div class="team team-b">
-                    <span class="team-name" id="teamB-name">Spain</span>
-                    <img src="assets/flags/spain.png" alt="Team B" class="flag" id="teamB-flag">
+                    <span class="team-name" id="teamB-name">Loading...</span>
+                    <img src="" alt="Team B" class="flag" id="teamB-flag">
                 </div>
             </div>
 
             <div class="prediction-container">
                 <span class="prediction-label">DoePhaGyi Tip:</span>
-                <span class="prediction-text" id="prediction-text">Argentina Win & Over 2.5 Goals</span>
+                <span class="prediction-text" id="prediction-text">Loading...</span>
             </div>
-
         </div>
         
+    </div>
+
+    <div class="controls">
+        <button id="playPauseBtn" onclick="togglePlay()">⏸ Pause Auto-Play</button>
+        <p>💡 ကီးဘုတ်မှ <b>Spacebar</b> သို့မဟုတ် <b>P</b> ကို နှိပ်၍လည်း Play / Pause ပြုလုပ်နိုင်ပါသည်။</p>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
