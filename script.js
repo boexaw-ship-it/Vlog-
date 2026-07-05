@@ -1,3 +1,4 @@
+// ပွဲစဉ်အချက်အလက်များအား JavaScript ထဲတွင် တိုက်ရိုက်သိမ်းဆည်းထားခြင်း (CORS Error ကင်းဝေးစေရန်)
 const matches = [
     {
         "teamAName": "Argentina",
@@ -28,18 +29,23 @@ const matches = [
 ];
 
 let currentIndex = 0;
-const changeInterval = 5000; 
+const changeInterval = 5000; // ၅ စက္ကန့်တစ်ခါ ပြောင်းလဲမည်
 let isPlaying = true; 
 let intervalId; 
 
+// ဘောလုံးကွင်းထဲတွင် Formation အစက်များ ထုတ်ပေးသည့် လုပ်ဆောင်ချက်
 function generatePitchFormation(containerId, formationArray) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = ''; 
+
+    // ဂိုးသမား (GK) အစက်
     const gkLine = document.createElement('div');
     gkLine.className = 'formation-line';
     gkLine.innerHTML = '<div class="player-dot"></div>';
     container.appendChild(gkLine);
+
+    // ကျန်လိုင်းများ (DF, MF, FW)
     formationArray.forEach(count => {
         const line = document.createElement('div');
         line.className = 'formation-line';
@@ -52,6 +58,7 @@ function generatePitchFormation(containerId, formationArray) {
     });
 }
 
+// W, D, L ခလုတ်လေးများ ထုတ်ပေးသည့် လုပ်ဆောင်ချက်
 function generateFormBadges(resultsArray) {
     return resultsArray.map(res => {
         let className = 'win';
@@ -61,79 +68,68 @@ function generateFormBadges(resultsArray) {
     }).join('');
 }
 
+// မျက်နှာပြင်ပေါ်ရှိ အချက်အလက်များအား ပြောင်းလဲပေးသည့် လုပ်ဆောင်ချက်
 function updateMatchInfo() {
     if (matches.length === 0) return;
+
     const lowerThirdBox = document.querySelector('.lower-third-box');
     const sidePanel = document.querySelector('.side-panel');
+    
+    // Smooth Fade Out
     lowerThirdBox.style.opacity = 0;
     sidePanel.style.opacity = 0;
 
     setTimeout(() => {
         currentIndex = (currentIndex + 1) % matches.length;
         const match = matches[currentIndex];
+
+        // Lower Third Area
         document.getElementById('teamA-name').innerText = match.teamAName;
         document.getElementById('teamA-flag').src = match.teamAFlag;
         document.getElementById('teamB-name').innerText = match.teamBName;
         document.getElementById('teamB-flag').src = match.teamBFlag;
         document.getElementById('prediction-text').innerText = match.prediction;
+
+        // Side Panel စာသားများ
         document.getElementById('teamA-formation-text').innerText = match.teamAFormation;
         document.getElementById('teamB-formation-text').innerText = match.teamBFormation;
         document.getElementById('teamA-small-flag').src = match.teamAFlag;
         document.getElementById('teamB-small-flag').src = match.teamBFlag;
+        
+        // Form Badges များ ထည့်ခြင်း
         document.getElementById('teamA-form').innerHTML = generateFormBadges(match.teamAForm);
         document.getElementById('teamB-form').innerHTML = generateFormBadges(match.teamBForm);
+
+        // Formation အစက်များ နေရာချခြင်း
         generatePitchFormation('teamA-players', match.teamAPitchArr);
         generatePitchFormation('teamB-players', match.teamBPitchArr);
+
+        // Fade In 
         lowerThirdBox.style.opacity = 1;
         sidePanel.style.opacity = 1;
     }, 500); 
 }
 
-function startAutoPlay() { 
-    if(!intervalId) {
-        intervalId = setInterval(updateMatchInfo, changeInterval); 
-    }
-}
-function stopAutoPlay() { 
-    clearInterval(intervalId); 
-    intervalId = null;
-}
+// Play / Pause ထိန်းချုပ်မှုများ
+function startAutoPlay() { intervalId = setInterval(updateMatchInfo, changeInterval); }
+function stopAutoPlay() { clearInterval(intervalId); }
 
-// ပြင်ပမှ လှမ်းထိန်းချုပ်နိုင်ရန် အခြေအနေ ပြောင်းလဲပေးသည့် လုပ်ဆောင်ချက်
-function setPlayState(play) {
-    isPlaying = play;
+function togglePlay() {
+    isPlaying = !isPlaying;
     const btn = document.getElementById('playPauseBtn');
     if(isPlaying) {
         startAutoPlay();
-        if(btn) btn.innerText = "⏸ Pause Auto-Play";
-        if(btn) btn.style.background = "#e63946";
+        btn.innerText = "⏸ Pause Auto-Play";
+        btn.style.background = "#e63946"; // အနီရောင် ပြောင်းမည်
     } else {
         stopAutoPlay();
-        if(btn) btn.innerText = "▶️ Start Auto-Play";
-        if(btn) btn.style.background = "#2a9d8f";
+        btn.innerText = "▶️ Start Auto-Play";
+        btn.style.background = "#2a9d8f"; // အစိမ်းရောင် ပြောင်းမည်
     }
 }
 
-function togglePlay() {
-    const newState = !isPlaying;
-    setPlayState(newState);
-    // အခြား Screen/OBS က သိရှိနိုင်ရန် ချက်ချင်း သိမ်းဆည်းလိုက်မည်
-    localStorage.setItem('doePhaGyi_playing', newState ? 'true' : 'false');
-}
-
-// === [စနစ်သစ်] OBS ထဲမှနေ၍ အခြေအနေကို စက္ကန့်ဝက်တစ်ခါ လှမ်းစစ်မည့် စနစ် ===
-setInterval(() => {
-    const remoteState = localStorage.getItem('doePhaGyi_playing');
-    if (remoteState !== null) {
-        const shouldPlay = remoteState === 'true';
-        if (shouldPlay !== isPlaying) {
-            setPlayState(shouldPlay);
-        }
-    }
-}, 500);
-
+// စတင်လည်ပတ်ခြင်း လုပ်ဆောင်ချက်
 function initOverlay() {
-    localStorage.setItem('doePhaGyi_playing', 'true'); // စဖွင့်ချင်း Play ထားမည်
     if (matches.length > 0) {
         const firstMatch = matches[0];
         document.getElementById('teamA-name').innerText = firstMatch.teamAName;
@@ -149,8 +145,10 @@ function initOverlay() {
         document.getElementById('teamB-form').innerHTML = generateFormBadges(firstMatch.teamBForm);
         generatePitchFormation('teamA-players', firstMatch.teamAPitchArr);
         generatePitchFormation('teamB-players', firstMatch.teamBPitchArr);
+        
         startAutoPlay();
     }
 }
 
+// ဖွင့်ဖွင့်ချင်း စတင် Run စေခြင်း
 window.onload = initOverlay;
