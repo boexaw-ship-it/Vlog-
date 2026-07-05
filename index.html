@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoePhaGyi WC26 Overlay</title>
+    <!-- CSS ဖိုင်ကို ချိတ်ဆက်ခြင်း -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="overlay-container">
         
+        <!-- Top Bug (ညာဘက်အပေါ်ထောင့် ချန်နယ်နာမည်) -->
         <div class="top-bug">
             <div class="channel-name">DoePhaGyi</div>
             <div class="event-name">World Cup '26 | Round of 16</div>
         </div>
 
+        <!-- ညာဘက် ဘေးဘောင် (Stats & Mini-Pitch Formation) -->
         <div class="side-panel">
             <div class="panel-header">Match Info</div>
             
+            <!-- Formation အပိုင်း (ဘောလုံးကွင်းပုံစံ) -->
             <div class="panel-section">
                 <div class="section-title">Team Formations</div>
                 <div class="formation-header-row">
@@ -25,6 +29,7 @@
                     <span id="teamB-formation-text">Loading...</span>
                 </div>
                 
+                <!-- ဘောလုံးကွင်း ဧရိယာ -->
                 <div class="pitch">
                     <div class="half-line"></div>
                     <div class="center-circle"></div>
@@ -33,6 +38,7 @@
                 </div>
             </div>
 
+            <!-- Recent Results အပိုင်း (နောက်ဆုံး ၅ ပွဲရလဒ်) -->
             <div class="panel-section">
                 <div class="section-title">Recent Form (Last 5 Matches)</div>
                 <div class="result-row">
@@ -46,6 +52,7 @@
             </div>
         </div>
 
+        <!-- အောက်ခြေ Prediction Bar (Lower Third) -->
         <div class="lower-third-box">
             <div class="matchup-container">
                 <div class="team team-a">
@@ -69,11 +76,16 @@
         
     </div>
 
+    <!-- OBS Interact ဖြင့် နှိပ်ရန် 1080p အောက်ခြေ၌ ထားရှိသော Control Panel -->
     <div class="controls">
-        <button id="playPauseBtn" onclick="togglePlay()">⏸ Pause Auto-Play</button>
-        <p>💡 OBS Source ကို Right-Click နှိပ်ပြီး <b>Interact</b> ခေါ်ကာ ဤခလုတ်ကို နှိပ်၍ ရပ်/ဖွင့် လုပ်နိုင်ပါသည်။</p>
+        <div style="display: flex; gap: 15px;">
+            <button id="playPauseBtn" onclick="togglePlay()">⏸ Pause Auto-Play</button>
+            <button id="chromaBtn" onclick="toggleChromaMode()" style="background: #475569;">⚪ Green Screen: OFF</button>
+        </div>
+        <p>💡 OBS Source ကို Right-Click နှိပ်ပြီး <b>Interact</b> ခေါ်ကာ ဤခလုတ်များကို နှိပ်၍ ရပ်/ဖွင့် နှင့် Video Editing အတွက် Green Screen ကို အဖွင့်/အပိတ် ပြုလုပ်နိုင်ပါသည်။</p>
     </div>
 
+    <!-- JavaScript ဖိုင်ကို ချိတ်ဆက်ခြင်း -->
     <script src="script.js"></script>
 </body>
 </html>
