@@ -6,6 +6,7 @@ body {
     overflow: auto; /* Interact Window တွင် အောက်ခြေခလုတ်ဆီ Scroll ဆွဲနိုင်ရန် */
     background-color: transparent; 
     font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease;
 }
 
 .overlay-container {
@@ -31,6 +32,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     text-align: right;
     animation: slideDown 1s ease-out forwards;
+    transition: all 0.3s ease;
 }
 
 .top-bug .channel-name {
@@ -64,7 +66,7 @@ body {
     overflow: hidden;
     color: white;
     animation: slideLeft 1.2s ease-out forwards;
-    transition: opacity 0.5s ease-in-out; 
+    transition: opacity 0.5s ease-in-out, background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .panel-header {
@@ -114,6 +116,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 10px;
+    transition: background 0.3s ease;
 }
 
 .half-line {
@@ -223,7 +226,7 @@ body {
     border-radius: 16px;
     overflow: hidden; 
     animation: slideRight 1.2s ease-out forwards;
-    transition: opacity 0.5s ease-in-out; 
+    transition: opacity 0.5s ease-in-out, background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .matchup-container {
@@ -298,7 +301,7 @@ body {
 /* ================== Hidden Control Panel ================== */
 .controls {
     position: absolute;
-    top: 1100px; /* 1080p အောက်ခြေဖြစ်၍ ဗီဒီယိုထဲမပါဘဲ Interact တွင်သာ ပေါ်မည် */
+    top: 1100px; 
     left: 80px;
     background: #1e293b;
     padding: 20px 30px;
@@ -308,7 +311,7 @@ body {
     width: fit-content;
 }
 .controls button {
-    background: #e63946; color: white; border: none; padding: 12px 24px;
+    color: white; border: none; padding: 12px 24px;
     font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s;
 }
 .controls button:hover { opacity: 0.8; }
@@ -318,3 +321,26 @@ body {
 @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 @keyframes slideRight { 0% { transform: translateX(-100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
 @keyframes slideLeft { 0% { transform: translateX(100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+
+
+/* =============================================================
+   🟢 GREEN SCREEN MODE (Chroma Key အတွက် သီးသန့် အထူးဒီဇိုင်း)
+   ============================================================= */
+body.chroma-key-active {
+    background-color: #00ff00 !important; /* Pure Green Screen Background */
+}
+
+/* Chroma Mode တွင် box များကို လုံးဝအလင်းမပေါက်သော အမည်းရောင်ပြောင်းပြီး အရိပ်များကို ဖျောက်သည် */
+body.chroma-key-active .top-bug,
+body.chroma-key-active .side-panel,
+body.chroma-key-active .lower-third-box {
+    background: #0f172a !important; /* Solid Slate Black (အကြည်ရောင် မဟုတ်တော့ပါ) */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important; /* သန့်ရှင်းစွာ ဖောက်နိုင်ရန် အဖြူလိုင်းကွပ်ပေးသည် */
+    box-shadow: none !important; /* အရိပ်များကြောင့် ပတ်ပတ်လည် အစိမ်းရောင်မကျန်စေရန် အရိပ်ဖျောက်သည် */
+}
+
+body.chroma-key-active .pitch {
+    background: #1e293b !important; /* Solid Pitch Area */
+}
