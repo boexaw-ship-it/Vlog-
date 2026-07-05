@@ -104,7 +104,7 @@ body {
 
 .vs-text { font-size: 14px; color: #e63946; }
 
-/* Football Pitch Design */
+/* Football Pitch Drawing */
 .pitch {
     position: relative;
     width: 100%;
@@ -169,7 +169,7 @@ body {
 
 @keyframes pulse {
     0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px systemcolor; }
+    100% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px currentColor; }
 }
 
 /* Recent Form Badges */
@@ -295,7 +295,7 @@ body {
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-/* ================== Hidden Controls Panel ================== */
+/* ================== Hidden Control Panel ================== */
 .controls {
     position: absolute;
     top: 1120px; 
@@ -313,7 +313,7 @@ body {
 .controls button:hover { opacity: 0.8; }
 .controls p { margin: 15px 0 0 0; font-size: 14px; color: #cbd5e1; }
 
-/* ================== Animations ================== */
+/* ================== General Animations ================== */
 @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 @keyframes slideRight { 0% { transform: translateX(-100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
 @keyframes slideLeft { 0% { transform: translateX(100px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
