@@ -1,4 +1,4 @@
-// data.json ကို လှမ်းမခေါ်တော့ဘဲ JavaScript ထဲမှာပဲ array အနေနဲ့ တိုက်ရိုက်သိမ်းထားပါမည်
+// Data များကို JavaScript ထဲတွင် တိုက်ရိုက်သိမ်းဆည်းထားပါသည် (CORS Error ကင်းဝေးစေရန်)
 const matches = [
     {
         "teamAName": "Argentina",
@@ -128,10 +128,12 @@ function togglePlay() {
     }
 }
 
-// ကီးဘုတ် Shortcut အာရုံခံစနစ်
-document.addEventListener('keydown', function(event) {
-    if (event.code === 'Space' || event.key === 'p' || event.key === 'P') {
-        event.preventDefault();
+// === [အရေးကြီးဆုံးအပိုင်း] OBS က လှမ်းဖတ်မည့် ကီးဘုတ် Shortcut အာရုံခံစနစ် ===
+window.addEventListener('keydown', function(event) {
+    // ၁။ သာမန် Browser ထဲတွင် စမ်းသပ်ရန် Spacebar သို့မဟုတ် P
+    // ၂။ OBS ထဲမှ လှမ်းထိန်းချုပ်နိုင်ရန် F9 ခလုတ် သို့မဟုတ် Numpad 5 ခလုတ်
+    if (event.code === 'Space' || event.key === 'p' || event.key === 'P' || event.key === 'F9' || event.code === 'Numpad5') {
+        event.preventDefault(); 
         togglePlay();
     }
 });
@@ -158,5 +160,4 @@ function initOverlay() {
     }
 }
 
-// Page စပွင့်ချင်း Run ပါမည်
 window.onload = initOverlay;
