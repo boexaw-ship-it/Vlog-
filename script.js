@@ -1,6 +1,35 @@
-let matches = []; 
+// data.json ကို လှမ်းမခေါ်တော့ဘဲ JavaScript ထဲမှာပဲ array အနေနဲ့ တိုက်ရိုက်သိမ်းထားပါမည်
+const matches = [
+    {
+        "teamAName": "Argentina",
+        "teamAFlag": "assets/flags/argentina.png",
+        "teamBName": "Spain",
+        "teamBFlag": "assets/flags/spain.png",
+        "prediction": "Argentina Win & Over 2.5 Goals",
+        "teamAFormation": "4-3-3",
+        "teamBFormation": "4-2-3-1",
+        "teamAPitchArr": [4, 3, 3],
+        "teamBPitchArr": [4, 2, 3, 1],
+        "teamAForm": ["W", "W", "W", "D", "W"],
+        "teamBForm": ["W", "W", "D", "W", "W"]
+    },
+    {
+        "teamAName": "Brazil",
+        "teamAFlag": "assets/flags/brazil.png",
+        "teamBName": "France",
+        "teamBFlag": "assets/flags/france.png",
+        "prediction": "Brazil Win & Both Teams to Score (BTTS)",
+        "teamAFormation": "4-2-3-1",
+        "teamBFormation": "4-3-3",
+        "teamAPitchArr": [4, 2, 3, 1],
+        "teamBPitchArr": [4, 3, 3],
+        "teamAForm": ["W", "W", "L", "W", "W"],
+        "teamBForm": ["W", "D", "W", "W", "W"]
+    }
+];
+
 let currentIndex = 0;
-const changeInterval = 5000; // ၅ စက္ကန့်တစ်ခါပြောင်းမည်
+const changeInterval = 5000; 
 let isPlaying = true; 
 let intervalId; 
 
@@ -107,29 +136,27 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// data.json ဖိုင်ကို လှမ်းဖတ်ပြီး စတင်လည်ပတ်ခြင်း
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        matches = data;
+// စတင်လည်ပတ်ခြင်း လုပ်ဆောင်ချက်
+function initOverlay() {
+    if (matches.length > 0) {
+        const firstMatch = matches[0];
+        document.getElementById('teamA-name').innerText = firstMatch.teamAName;
+        document.getElementById('teamA-flag').src = firstMatch.teamAFlag;
+        document.getElementById('teamB-name').innerText = firstMatch.teamBName;
+        document.getElementById('teamB-flag').src = firstMatch.teamBFlag;
+        document.getElementById('prediction-text').innerText = firstMatch.prediction;
+        document.getElementById('teamA-formation-text').innerText = firstMatch.teamAFormation;
+        document.getElementById('teamB-formation-text').innerText = firstMatch.teamBFormation;
+        document.getElementById('teamA-small-flag').src = firstMatch.teamAFlag;
+        document.getElementById('teamB-small-flag').src = firstMatch.teamBFlag;
+        document.getElementById('teamA-form').innerHTML = generateFormBadges(firstMatch.teamAForm);
+        document.getElementById('teamB-form').innerHTML = generateFormBadges(firstMatch.teamBForm);
+        generatePitchFormation('teamA-players', firstMatch.teamAPitchArr);
+        generatePitchFormation('teamB-players', firstMatch.teamBPitchArr);
         
-        if (matches.length > 0) {
-            const firstMatch = matches[0];
-            document.getElementById('teamA-name').innerText = firstMatch.teamAName;
-            document.getElementById('teamA-flag').src = firstMatch.teamAFlag;
-            document.getElementById('teamB-name').innerText = firstMatch.teamBName;
-            document.getElementById('teamB-flag').src = firstMatch.teamBFlag;
-            document.getElementById('prediction-text').innerText = firstMatch.prediction;
-            document.getElementById('teamA-formation-text').innerText = firstMatch.teamAFormation;
-            document.getElementById('teamB-formation-text').innerText = firstMatch.teamBFormation;
-            document.getElementById('teamA-small-flag').src = firstMatch.teamAFlag;
-            document.getElementById('teamB-small-flag').src = firstMatch.teamBFlag;
-            document.getElementById('teamA-form').innerHTML = generateFormBadges(firstMatch.teamAForm);
-            document.getElementById('teamB-form').innerHTML = generateFormBadges(firstMatch.teamBForm);
-            generatePitchFormation('teamA-players', firstMatch.teamAPitchArr);
-            generatePitchFormation('teamB-players', firstMatch.teamBPitchArr);
-            
-            startAutoPlay();
-        }
-    })
-    .catch(error => console.error("JSON data Error: ", error));
+        startAutoPlay();
+    }
+}
+
+// Page စပွင့်ချင်း Run ပါမည်
+window.onload = initOverlay;
