@@ -6,7 +6,7 @@
         "teamBFlag": "assets/flags/spain.png",
         "prediction": "Argentina Win & Over 2.5 Goals",
         "teamAFormation": "4-3-3",
-        "teamBFormation: "4-2-3-1",
+        "teamBFormation": "4-2-3-1",
         "teamAPitchArr": [4, 3, 3],
         "teamBPitchArr": [4, 2, 3, 1],
         "teamAForm": ["W", "W", "W", "D", "W"],
