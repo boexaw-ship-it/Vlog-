@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: auto; 
+    overflow: auto; /* Interact Window တွင် အောက်ခြေခလုတ်ဆီ Scroll ဆွဲနိုင်ရန် */
     background-color: transparent; 
     font-family: 'Montserrat', sans-serif;
 }
@@ -298,13 +298,14 @@ body {
 /* ================== Hidden Control Panel ================== */
 .controls {
     position: absolute;
-    top: 1120px; 
+    top: 1100px; /* 1080p အောက်ခြေဖြစ်၍ ဗီဒီယိုထဲမပါဘဲ Interact တွင်သာ ပေါ်မည် */
     left: 80px;
     background: #1e293b;
     padding: 20px 30px;
     border-radius: 12px;
     border: 2px solid #fca311;
     color: white;
+    width: fit-content;
 }
 .controls button {
     background: #e63946; color: white; border: none; padding: 12px 24px;
