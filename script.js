@@ -1,30 +1,30 @@
 // === ပွဲစဉ်အချက်အလက်များ (CORS Error မတက်စေရန် ဤနေရာတွင် တိုက်ရိုက်သိမ်းဆည်းထားပါသည်) ===
 const matches = [
     {
-        "teamAName": "Brazil",
+        "teamAName": "Portugal",
         "teamAFlag": "assets/flags/f1.png",
-        "teamBName": "Norway",
+        "teamBName": "Spain",
         "teamBFlag": "assets/flags/f1a.png",
-        "prediction": "Brazil Win 55% Draws 17% Norway Win 28%",
-        "teamAFormation": "4-3-3",
-        "teamBFormation": "4-3-3",
-        "teamAPitchArr": [4, 3, 3],
-        "teamBPitchArr": [4, 3, 3],
-        "teamAForm": ["W", "D", "W", "W", "W"],
-        "teamBForm": ["D", "W", "W", "L", "W"]
+        "prediction": "Portugal Win 47% Draws 16% Spain Win 37%",
+        "teamAFormation": "4-2-3-1",
+        "teamBFormation": "4-2-3-1",
+        "teamAPitchArr": [4, 2, 3, 1],
+        "teamBPitchArr": [4, 2, 3, 1],
+        "teamAForm": ["W", "D", "W", "D", "W"],
+        "teamBForm": ["W", "D", "W", "W", "W"]
     },
     {
-        "teamAName": "Mexico",
+        "teamAName": "USA",
         "teamAFlag": "assets/flags/f2.png",
-        "teamBName": "England",
+        "teamBName": "Belgium",
         "teamBFlag": "assets/flags/f2a.png",
-        "prediction": "Mexico Win 39% Draws 13% England Win 48%",
-        "teamAFormation": "4-3-3",
+        "prediction": "USA Win 40% Draws 16% Belgium Win 44%",
+        "teamAFormation": "4-1-4-1",
         "teamBFormation": "4-2-3-1",
-        "teamAPitchArr": [4, 3, 3],
+        "teamAPitchArr": [4, 1, 4,1],
         "teamBPitchArr": [4, 2, 3, 1],
-        "teamAForm": ["W", "W", "W", "W", "W"],
-        "teamBForm": ["W", "W", "D", "W", "W"]
+        "teamAForm": ["L", "W", "W", "L", "W"],
+        "teamBForm": ["W", "D", "D", "W", "W"]
     }
 ];
 
